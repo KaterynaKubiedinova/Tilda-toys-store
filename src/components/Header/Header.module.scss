@@ -1,0 +1,24 @@
+.header {
+	@apply p-4 flex justify-center items-center h-20 bg-stone-800 text-white text-sm;
+	width: 100%;
+	position: sticky;
+	top: 0px;
+	z-index: 100;
+
+	.headerOptions {
+		@apply flex justify-between gap-10 items-center;
+		width: 70%;
+	}
+
+	.headerRight {
+		@apply flex gap-14 items-center justify-start;
+	}
+	
+	.headerLeft {
+		@apply flex gap-14 items-center justify-end;
+	}
+	
+	
+}
+
+
