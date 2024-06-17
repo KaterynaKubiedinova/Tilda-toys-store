@@ -4,7 +4,6 @@ import React, { FC } from 'react';
 
 
 const Page = ({ params }: { params: { productId: string } }) => {
-	const id = params.productId;
     
 	return (
 		<>
