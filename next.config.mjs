@@ -21,9 +21,6 @@ const nextConfig = {
         },
     ],
   },
-  env: {
-    baseURL: 'http://localhost:4200/api/',
-  },
   
 };
 

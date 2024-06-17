@@ -1,4 +1,4 @@
 export const ApiEndpoinst = {
-	Products: 'product',
-	Categories: 'category'
+	Products: '/product',
+	Categories: '/category'
 }

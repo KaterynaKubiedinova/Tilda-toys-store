@@ -39,7 +39,6 @@ export const createProduct = createAsyncThunk(
 		try {
 			const response = await api.post(ApiEndpoinst.Products, dto);
       const { data } = response;
-      console.log(response);
       return data.product;
     } catch (e) {
       return e as AxiosError;
