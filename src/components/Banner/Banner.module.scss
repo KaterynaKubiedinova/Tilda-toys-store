@@ -1,0 +1,26 @@
+.banner {
+	@apply bg-center p-10 h-96 flex items-center justify-center;
+	background-image: url("../../app/images/IMG_4399.JPG");
+	background-size: contain;
+	color: rgb(138, 103, 91);
+
+	div {
+		@apply p-10 flex flex-col items-center;
+		background-color: rgba(234, 225, 209, 0.813);
+		width: 40%;
+		border-radius: 10px;
+
+		h1 {
+		}
+
+		p {
+			@apply text-2xl font-medium;
+			
+		}
+		button {
+			@apply bg-orange-100 h-14 w-64 text-xl opacity-95 my-8;
+			border-radius: 10px;
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+.footer {
+	@apply flex flex-col bottom-0 left-0 gap-5 items-center justify-center h-32 bg-stone-800 text-white text-sm py-36 px-0;
+	width: 100%;
+
+	a {
+		cursor:pointer;
+	}
+
+	.footerLinks {
+		@apply flex justify-between items-start;
+		width: 70%;
+	}
+
+	.footerLinksChild {
+		@apply flex flex-col gap-5;
+		div:first-child {
+			@apply text-lg font-semibold;
+		}
+	}
+
+	.footerSocial {
+		@apply flex gap-5 text-xl;
+	}
+
+	.footerText {
+		@apply flex justify-start text-sm;
+	}
+	
+}

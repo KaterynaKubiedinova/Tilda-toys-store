@@ -1,0 +1,31 @@
+.formPage {
+	@apply relative flex flex-col justify-center overflow-hidden;
+	padding: 15px 0;
+	min-height: 50vh;
+	.formBlock {
+		@apply w-full p-6 m-auto bg-stone-300 ring ring-stone-400 rounded-md shadow-xl lg:max-w-xl;
+		--tw-shadow-color: rgb(120 113 108);
+  	--tw-shadow: var(--tw-shadow-colored);
+		color: rgb(41 37 36);
+		h1 {
+			@apply text-3xl font-semibold text-center uppercase;
+		}
+		form {
+			@apply mt-6;
+
+			label {
+				@apply block text-sm font-semibold;
+			}
+			img {
+				border-radius: 10px;
+				margin: 5px 0;
+			}
+			input, select {
+				@apply block w-full px-4 py-2 mt-2 bg-stone-100 rounded-md focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-stone-400;
+			}
+			button {
+				@apply w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-stone-800 rounded-md hover:bg-stone-700 focus:outline-none focus:bg-stone-700;
+			}
+		}
+	}
+}

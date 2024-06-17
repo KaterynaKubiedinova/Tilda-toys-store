@@ -1,0 +1,48 @@
+.itemContainer {
+	@apply bg-white flex;
+	border-radius: 10px;
+	margin: 15px auto;
+	
+	box-shadow: 0 0 10px rgba(212, 163, 163, 0.1);
+	overflow: hidden;
+	color: rgb(106, 71, 71);
+	width: 70%;
+
+	.itemImage {
+			flex: 1;
+			padding: 10px;
+			img {
+					width: 70%;
+					margin: auto;
+					border-radius: 25px;
+					height: auto;
+					display: block;
+			}
+	}
+
+	.itemDetails {
+			flex: 1;
+			padding: 2rem;
+
+			.itemTitle {
+					font-size: 1.5rem;
+					margin-bottom: 1rem;
+			}
+
+			.itemDescription {
+					font-size: 1rem;
+					margin-bottom: 1.5rem;
+			}
+
+			.itemPrice {
+					font-size: 1.25rem;
+					margin-bottom: 1.5rem;
+			}
+
+			.addToCart {
+					@apply w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-stone-800 rounded-md hover:bg-stone-700 focus:outline-none focus:bg-stone-700;
+					cursor: pointer;
+					transition: background-color 0.3s;
+			}
+	}
+}
