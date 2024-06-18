@@ -21,6 +21,9 @@ const nextConfig = {
         },
     ],
   },
+  env: {
+    API_HOST: 'http://localhost:4200/api',
+  },
   
 };
 
