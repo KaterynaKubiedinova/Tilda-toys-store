@@ -1,4 +1,4 @@
-import { getAllCategories } from "@/app/tools/services";
+import { getAllCategories } from "@/app/tools/apiService";
 import { RootState } from "@/lib/store";
 import { CategoryState } from "@/types/categoryTypes";
 import { createSlice } from "@reduxjs/toolkit";

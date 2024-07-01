@@ -1,4 +1,4 @@
-import { createProduct, getAllProducts, getProductByID } from "@/app/tools/services";
+import { createProduct, getAllProducts, getProductByID } from "@/app/tools/apiService";
 import { RootState } from "@/lib/store";
 import { ProductsState } from "@/types/productTypes";
 import { createSlice } from "@reduxjs/toolkit";

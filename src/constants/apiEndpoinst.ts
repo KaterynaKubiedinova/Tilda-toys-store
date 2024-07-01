@@ -1,4 +1,5 @@
 export const ApiEndpoinst = {
 	Products: '/product',
-	Categories: '/category'
+	Categories: '/category',
+	ImageUpload: '/image-uploader'
 }

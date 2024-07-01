@@ -1,12 +1,12 @@
 'use client'
 
-import ProductItem from '@/components/Products/Item/ProductItem';
+import ProductItem from '@/components/Products/Card/ProductCard';
 import React, { useEffect } from 'react';
 import styles from "./MarketplacePage.module.scss";
 import { Product } from '@/types/productTypes';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { selectAllProducts } from '@/lib/Features/products/productsSlice';
-import { getAllProducts } from '@/app/tools/services';
+import { getAllProducts } from '@/app/tools/apiService';
 
 const MarketplacePage = () => {
 	const allProducts = useAppSelector(selectAllProducts);

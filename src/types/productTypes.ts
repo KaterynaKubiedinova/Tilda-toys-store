@@ -1,7 +1,8 @@
 export interface Product {
 	title: string;
 	price: string;
-	image: string;
+	imageId: string;
+	imageUrl: string;
 	id: number;
 }
 
@@ -13,9 +14,19 @@ export interface ProductDescription extends Product {
 export interface ProductDTO {
 	title: string,
 	price: string,
-	image: string,
+	imageId: string,
+	imageUrl: string,
 	description: string,
 	category_id: string,
+}
+
+export interface UpdateProductDTO {
+	title?: string,
+	price?: string,
+	imageId?: string,
+	imageUrl?: string,
+	description?: string,
+	category_id?: string,
 }
 
 export type ProductsState = {

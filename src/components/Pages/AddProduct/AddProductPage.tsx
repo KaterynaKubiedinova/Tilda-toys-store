@@ -1,42 +1,55 @@
 "use client"
 
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './AddProduct.module.scss';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { selectAllCategories } from '@/lib/Features/categories/categoriesSlice';
-import { createProduct, getAllCategories } from '@/app/tools/services';
+import { addImage, createProduct, getAllCategories } from '@/app/tools/apiService';
 import { ProductDTO } from '@/types/productTypes';
 import { useRouter } from 'next/navigation';
 import { Routes } from '@/constants/routes';
-import { selectNewProductId, refreshNewUserID } from '@/lib/Features/products/productsSlice';
 
 const AddProductPage = () => {
-	const [file, setFile] = useState('');
-	const { register, handleSubmit, watch, formState: { errors } } = useForm<ProductDTO>();
+	const [fileURL, setFileURL] = useState('');
+	const { register, handleSubmit } = useForm<ProductDTO>();
 	const allCategories = useAppSelector(selectAllCategories);
-	const newProductID = useAppSelector(selectNewProductId);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+	const formData = useRef(new FormData())
 
 	useEffect(() => {
 		dispatch(getAllCategories());
 	}, [])
-
-	useEffect(() => {
-		if (newProductID) {
-			router.push(`${Routes.Marketplace}/${newProductID}`);
-			dispatch(refreshNewUserID());
-		}
-	}, [newProductID])
 	
 	const onSubmit = (data: ProductDTO) => {
-		dispatch(createProduct(data));
+		dispatch(addImage(formData.current)).then(image => {
+
+			const newProduct = {
+				title: data.title,
+				price: data.price,
+				imageId: image.payload.id,
+				imageUrl: image.payload.url,
+				description: data.description,
+				category_id: data.category_id,
+			}
+			dispatch(createProduct(newProduct)).then(data => router.push(`${Routes.Marketplace}/${data.payload.id}`));
+		});
+		
+		
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		e.target.files && setFile(URL.createObjectURL(e.target.files[0]));
+		if (e.target.files) {
+			setFileURL(URL.createObjectURL(e.target.files[0]));
+			const image = e.target.files[0];
+			const newFormData = new FormData();
+
+			newFormData.append("file", image)
+			formData.current = newFormData;
+		}
+
 	}
 
 	return (
@@ -86,8 +99,8 @@ const AddProductPage = () => {
 									<label htmlFor="image" >
 										Toy image
 									</label>
-									<input {...register('image', {required: true, onChange: handleChange})} type="file" placeholder='Enter toy image' />
-									{file && <Image src={file} width={250} height={350} alt={''} />}
+									<input {...register('imageUrl', {required: true, onChange: handleChange})} type="file" placeholder='Enter toy image' />
+									{fileURL && <Image src={fileURL} width={250} height={350} alt={''} />}
 						</div>
 							<div className="mt-6">
 									<button type='submit'>

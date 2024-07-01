@@ -5,7 +5,7 @@ import Image from 'next/image';
 import styles from './ProductPage.module.scss';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { selectProductByID } from '@/lib/Features/products/productsSlice';
-import { getProductByID } from '@/app/tools/services';
+import { getProductByID } from '@/app/tools/apiService';
 
 type ProductPageProps = {
 	id: string,
@@ -20,9 +20,9 @@ const ProductPage = ({ id }: ProductPageProps) => {
 
 	return (
 		<div className={styles.itemContainer}>
-            {product ? <>
+            {product?.imageUrl ? <>
                 <div className={styles.itemImage}>
-                    <Image src={product?.image} alt="Item Image" width={300} height={500} />
+                    <Image src={product.imageUrl} alt="Item Image" width={300} height={500} />
                 </div>
                 <div className={styles.itemDetails}>
                     <h2 className={styles.itemTitle}>{product.title}</h2>

@@ -4,5 +4,6 @@ export const Routes = {
 	Marketplace: '/marketplace',
 	All: '/marketplace/all',
 	Products: '/products',
-	AddProduct: '/add-product'
+	AddProduct: '/add-product',
+	AddImage: '/add-image'
 } as const

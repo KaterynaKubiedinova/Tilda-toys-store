@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import api from "./api";
 import { ApiEndpoinst } from "@/constants/apiEndpoinst";
-import { ProductDTO } from "@/types/productTypes";
+import { ProductDTO, UpdateProductDTO } from "@/types/productTypes";
 
 export const getAllProducts = createAsyncThunk(
   'products/allProducts',
@@ -40,6 +40,38 @@ export const createProduct = createAsyncThunk(
 			const response = await api.post(ApiEndpoinst.Products, dto);
       const { data } = response;
       return data.product;
+    } catch (e) {
+      return e as AxiosError;
+    }
+  }
+);
+
+export const updateProductByID = createAsyncThunk(
+  'product/updateProduct',
+  async (params: {dto: UpdateProductDTO, id: number}) => {
+    try {
+			const response = await api.patch(ApiEndpoinst.Products + `/${params.id}`, params.dto,);
+      const { data } = response;
+      return data;
+    } catch (e) {
+      return e as AxiosError;
+    }
+  }
+)
+
+export const addImage = createAsyncThunk(
+  'products/addImage',
+  async (imageFile:  FormData) => {
+    try {
+      const response = await api.post(ApiEndpoinst.ImageUpload, imageFile, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }) 
+      const { data } = response;
+      // const updatedProduct = updateProductByID({dto: {image: data.data}, id: params.id})
+      console.log('updProduct: ', data);
+      return data
     } catch (e) {
       return e as AxiosError;
     }
