@@ -1,7 +1,7 @@
 .formPage {
 	@apply relative flex flex-col justify-center overflow-hidden;
 	padding: 15px 0;
-	min-height: 50vh;
+	min-height: 63vh;
 	.formBlock {
 		@apply w-full p-6 m-auto bg-stone-300 ring ring-stone-400 rounded-md shadow-xl lg:max-w-xl;
 		--tw-shadow-color: rgb(120 113 108);

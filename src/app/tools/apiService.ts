@@ -3,6 +3,69 @@ import { AxiosError } from "axios";
 import api from "./api";
 import { ApiEndpoinst } from "@/constants/apiEndpoinst";
 import { ProductDTO, UpdateProductDTO } from "@/types/productTypes";
+import { User } from "@/types/userTypes";
+
+export const authUser = createAsyncThunk(
+  'user/authUser',
+  async (formData: { email: string; password: string }) => {
+    try {
+        sessionStorage.clear();
+        const response = await api.post(ApiEndpoinst.Login, formData, {
+          withCredentials: true
+        });
+
+        const { data } = response;
+
+        if (data.accessToken) {
+          sessionStorage.setItem('AccessToken', data.accessToken);
+          const profile = await api.get(ApiEndpoinst.Profile)
+          sessionStorage.setItem('user', JSON.stringify(profile.data));
+        }
+        return data.user;
+    } catch (e) {
+      return e as AxiosError;
+    }
+  }
+);
+
+export const registerUser = createAsyncThunk(
+  'user/registerUser',
+  async (formData: User) => {
+    try {
+      const response = await api.post(ApiEndpoinst.Registration, formData, {
+        withCredentials: true
+      });
+      const { data } = response;
+
+      if (data.accessToken) {
+        sessionStorage.setItem('AccessToken', data.accessToken);
+        const profile = await api.get(ApiEndpoinst.Profile)
+        sessionStorage.setItem('user', JSON.stringify(profile.data));
+      }
+      return data;
+    } catch (e) {
+      return e as AxiosError;
+    }
+  }
+);
+
+export const logoutUser = createAsyncThunk(
+  'user/logoutUser',
+  async () => {
+    try {
+      const response = await api.get(ApiEndpoinst.Logout, {
+        withCredentials: true
+      });
+
+      const { data } = response;
+
+      sessionStorage.clear();
+      return data;
+    } catch (e) {
+      return e as AxiosError;
+    }
+  }
+);
 
 export const getAllProducts = createAsyncThunk(
   'products/allProducts',

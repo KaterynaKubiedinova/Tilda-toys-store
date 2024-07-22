@@ -1,12 +1,29 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import Logo from "../Logo/Logo";
 import styles from "./Header.module.scss";
-import Image from 'next/image';
-import { FaSearch, FaShoppingBag } from 'react-icons/fa';
+import { FaSearch, FaShoppingBag, FaUserCheck } from 'react-icons/fa';
 import Link from 'next/link';
 import { Routes } from '@/constants/routes';
+import { FaUser } from 'react-icons/fa6';
+import { IoLogOut } from 'react-icons/io5';
+import { useAppDispatch } from '@/lib/hooks';
+import { logoutUser } from '@/app/tools/apiService';
 
 const Header = () => {
+	const [token, setToken] = useState<string | null>(null)
+	const dispatch = useAppDispatch()
+	
+	useEffect(() => {
+		const newToken = sessionStorage.getItem('AccessToken')
+		setToken(newToken)
+	}, [])
+
+	const logout = () => {
+		dispatch(logoutUser())
+	}
+	
 	return (
 		<header className={styles.header}>
 			<div className={styles.headerOptions}>
@@ -30,6 +47,14 @@ const Header = () => {
 					</Link>
 					<Link href='/'>
 						<FaShoppingBag size={20} />
+					</Link>
+					<Link href={Routes.Authorisation}>
+						{!token ? <FaUser size={20} /> : <FaUserCheck size={20}/>}
+					</Link>
+				</div>
+				<div>
+					<Link href='/'>
+						<IoLogOut size={23} onClick={logout} />
 					</Link>
 				</div>
 			</div>

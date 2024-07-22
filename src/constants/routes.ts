@@ -5,5 +5,7 @@ export const Routes = {
 	All: '/marketplace/all',
 	Products: '/products',
 	AddProduct: '/add-product',
-	AddImage: '/add-image'
+	AddImage: '/add-image',
+	Authorisation: '/authorisation',
+	Registration: '/registration'
 } as const

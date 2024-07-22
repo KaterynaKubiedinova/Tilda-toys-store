@@ -10,6 +10,7 @@ import { addImage, createProduct, getAllCategories } from '@/app/tools/apiServic
 import { ProductDTO } from '@/types/productTypes';
 import { useRouter } from 'next/navigation';
 import { Routes } from '@/constants/routes';
+import { CustomButton } from '@/components/Button/Button';
 
 const AddProductPage = () => {
 	const [fileURL, setFileURL] = useState('');
@@ -102,11 +103,7 @@ const AddProductPage = () => {
 									<input {...register('imageUrl', {required: true, onChange: handleChange})} type="file" placeholder='Enter toy image' />
 									{fileURL && <Image src={fileURL} width={250} height={350} alt={''} />}
 						</div>
-							<div className="mt-6">
-									<button type='submit'>
-											Create
-									</button>
-							</div>
+						<CustomButton type='submit' text='Create' />
 					</form>
 				</div>
 			</div>
